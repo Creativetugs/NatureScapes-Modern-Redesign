@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatureScapes, Inc. | Foliage • Floral • Event Design</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: {
+                            DEFAULT: '#1b3b2b',
+                            dark: '#11261c',
+                            light: '#2c5942'
+                        },
+                        sage: {
+                            DEFAULT: '#8a9a86',
+                            light: '#e2e7e1',
+                            dark: '#687765'
+                        },
+                        ivory: {
+                            DEFAULT: '#f9f8f4',
+                            dark: '#efeddf'
+                        },
+                        terracotta: {
+                            DEFAULT: '#b86b4f',
+                            hover: '#9e5940'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f9f8f4;
+            color: #1b3b2b;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        /* Custom before-after slider styling */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 480px;
+        }
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        .slider-after {
+            width: 50%;
+            z-index: 2;
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #ffffff;
+            z-index: 3;
+            cursor: ew-resize;
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #1b3b2b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="bg-ivory text-forest selection:bg-sage selection:text-white">
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-ivory/90 backdrop-blur-md border-b border-sage/20">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <a href="#" class="flex flex-col">
+                <span class="font-serif text-2xl md:text-3xl font-bold tracking-tight text-forest">NatureScapes<span class="text-terracotta">.</span></span>
+                <span class="text-[10px] tracking-[0.2em] uppercase text-sage-dark font-medium">Foliage • Floral • Event Design</span>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#intro" class="hover:text-terracotta transition-colors">Philosophy</a>
+                <a href="#services" class="hover:text-terracotta transition-colors">Services</a>
+                <a href="#transformation" class="hover:text-terracotta transition-colors">Before & After</a>
+                <a href="#why-us" class="hover:text-terracotta transition-colors">Why Us</a>
+                <a href="#about" class="hover:text-terracotta transition-colors">About</a>
+                <a href="#portfolio" class="hover:text-terracotta transition-colors">Portfolio</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="tel:5405350731" class="text-sm font-semibold text-forest flex items-center gap-2 hover:text-terracotta transition-colors">
+                    <i class="fa-solid fa-phone text-terracotta"></i> 540-535-0731
+                </a>
+                <a href="#contact" class="bg-forest hover:bg-forest-light text-ivory px-5 py-3 rounded-full text-sm font-medium transition-all shadow-sm hover:shadow-md">
+                    Request a Consultation
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="menu-btn" class="lg:hidden text-forest text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-ivory border-b border-sage/20 px-6 py-6 space-y-4 shadow-xl">
+            <a href="#intro" class="block text-lg font-serif mobile-link">Philosophy</a>
+            <a href="#services" class="block text-lg font-serif mobile-link">Services</a>
+            <a href="#transformation" class="block text-lg font-serif mobile-link">Before & After</a>
+            <a href="#why-us" class="block text-lg font-serif mobile-link">Why Us</a>
+            <a href="#about" class="block text-lg font-serif mobile-link">About</a>
+            <a href="#portfolio" class="block text-lg font-serif mobile-link">Portfolio</a>
+            <div class="pt-4 border-t border-sage/20 flex flex-col space-y-3">
+                <a href="tel:5405350731" class="text-forest font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-phone text-terracotta"></i> 540-535-0731
+                </a>
+                <a href="#contact" class="bg-forest text-ivory text-center py-3 rounded-full font-medium">
+                    Request a Consultation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-forest-dark text-ivory">
+        <div class="absolute inset-0 z-0 opacity-45">
+            <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?q=80&w=1920&auto=format&fit=crop" alt="Lush botanical greenhouse with flowers and plants" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1920x1080/1b3b2b/8a9a86?text=Botanical+Floral+Greenhouse'">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-forest-dark via-forest-dark/80 to-transparent z-1"></div>
+
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-8 space-y-8">
+                <div class="inline-flex items-center gap-2 bg-forest-light/60 backdrop-blur-md px-4 py-2 rounded-full border border-sage/30 text-sage-light text-xs font-semibold tracking-widest uppercase">
+                    <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+                    Virginia's Shenandoah Valley • Since 2004
+                </div>
+
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-normal leading-[1.05] tracking-tight">
+                    Bring nature <br>
+                    <span class="italic font-light text-sage-light">into your space.</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-ivory/80 max-w-2xl font-light leading-relaxed">
+                    Living plants. Thoughtful design. Lasting impressions. Since 2004, NatureScapes has transformed offices, homes, healthcare environments, hospitality spaces, and special events throughout Virginia's Shenandoah Valley with beautiful plant designs and expert ongoing care.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+                    <a href="#services" class="bg-terracotta hover:bg-terracotta-hover text-white px-8 py-4 rounded-full text-center font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Explore Our Services
+                    </a>
+                    <a href="#contact" class="bg-transparent hover:bg-white/10 text-ivory border border-ivory/30 px-8 py-4 rounded-full text-center font-medium transition-all">
+                        Request a Consultation
+                    </a>
+                </div>
+
+                <div class="pt-8 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs text-sage-light uppercase tracking-widest">
+                    <span><i class="fa-solid fa-check text-terracotta mr-2"></i> Woman-owned</span>
+                    <span><i class="fa-solid fa-check text-terracotta mr-2"></i> Locally operated</span>
+                    <span><i class="fa-solid fa-check text-terracotta mr-2"></i> Fully maintained</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 hidden lg:block">
+                <div class="relative bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
+                    <span class="text-terracotta text-5xl font-serif">“</span>
+                    <p class="font-serif text-xl italic text-ivory/90 -mt-4 mb-6">
+                        We don’t simply fill a room with plants. We consider scale, light, architecture, color, and the feeling you want the space to create.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border border-sage/50 flex-shrink-0">
+                            <img src="http://naturescapesfoliage.com/images/kendra.jpg" alt="Kendra" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Kendra & Tricia</h4>
+                            <p class="text-xs text-sage-light">Founders & Lead Designers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intro" class="py-24 md:py-36 bg-ivory">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-8">
+            <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">More than plants</span>
+            <h2 class="font-serif text-4xl md:text-6xl text-forest font-normal leading-tight">
+                We create atmosphere.
+            </h2>
+            <p class="text-xl md:text-2xl font-serif italic text-sage-dark">
+                A thoughtfully designed space can change the way people feel.
+            </p>
+            <div class="w-16 h-[1px] bg-sage mx-auto my-6"></div>
+            <p class="text-lg text-forest/80 max-w-3xl mx-auto leading-relaxed font-light">
+                At NatureScapes, we combine horticultural expertise with an eye for design to create environments that feel welcoming, polished, vibrant, and alive. From a single statement planter to a complete corporate plantscape, our team designs every installation around your space, your style, and the experience you want to create.
+            </p>
+            <div class="pt-4 font-serif text-lg text-forest font-medium">
+                Beautiful spaces begin with something living.
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-forest-dark text-ivory relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Expert Offerings</span>
+                    <h2 class="font-serif text-4xl md:text-6xl font-normal mt-2">Designed to grow <br>with your space.</h2>
+                </div>
+                <p class="text-sage-light max-w-md font-light">
+                    Whether you're refreshing an office, welcoming guests, preparing your home for the season, or creating an unforgettable event, we bring the right combination of plants, flowers, and design.
+                </p>
+            </div>
+
+            <!-- Service 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-t border-white/10 items-center">
+                <div class="lg:col-span-2">
+                    <span class="font-serif text-6xl lg:text-8xl text-terracotta/40 font-light">01</span>
+                </div>
+                <div class="lg:col-span-4 space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-sage-light font-semibold">Interior Design</span>
+                    <h3 class="font-serif text-3xl md:text-4xl">Interior Plantscapes</h3>
+                    <p class="text-lg italic text-sage-light font-serif">Bring the outdoors in.</p>
+                    <p class="text-ivory/80 font-light leading-relaxed">
+                        Custom interior plant designs that add life, warmth, and personality to offices, healthcare facilities, restaurants, hotels, spas, homes, and other interior environments.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-terracotta hover:text-white font-medium transition-colors pt-2">
+                        Explore Interior Plantscapes <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="lg:col-span-6 bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-xs uppercase tracking-widest text-sage-light mb-6 font-semibold">Included Services & Care Features</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Custom plant design</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Professional installation</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Decorative containers</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Weekly plant care</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Blooming plant rotations</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Pest management</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Seasonal arrangements</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-leaf text-terracotta"></i> Plant guarantee</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-t border-white/10 items-center">
+                <div class="lg:col-span-2">
+                    <span class="font-serif text-6xl lg:text-8xl text-terracotta/40 font-light">02</span>
+                </div>
+                <div class="lg:col-span-4 space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-sage-light font-semibold">Exterior Design</span>
+                    <h3 class="font-serif text-3xl md:text-4xl">Exterior Plantscapes</h3>
+                    <p class="text-lg italic text-sage-light font-serif">Make your first impression bloom.</p>
+                    <p class="text-ivory/80 font-light leading-relaxed">
+                        Beautiful exterior containers, seasonal displays, and planted spaces designed to thrive throughout the seasons.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-terracotta hover:text-white font-medium transition-colors pt-2">
+                        Explore Exterior Plantscapes <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="lg:col-span-6 bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-xs uppercase tracking-widest text-sage-light mb-6 font-semibold">Exterior Solutions</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-seedling text-terracotta"></i> Seasonal container gardens</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-seedling text-terracotta"></i> Perennial flowerbeds</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-seedling text-terracotta"></i> Annual & perennial planting</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-seedling text-terracotta"></i> Installation & maintenance</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-seedling text-terracotta"></i> Bloom-boost fertilization</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-seedling text-terracotta"></i> Environment-matched selection</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-t border-white/10 items-center">
+                <div class="lg:col-span-2">
+                    <span class="font-serif text-6xl lg:text-8xl text-terracotta/40 font-light">03</span>
+                </div>
+                <div class="lg:col-span-4 space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-sage-light font-semibold">Seasonal Décor</span>
+                    <h3 class="font-serif text-3xl md:text-4xl">Holiday Decorating</h3>
+                    <p class="text-lg italic text-sage-light font-serif">Let us create the magic.</p>
+                    <p class="text-ivory/80 font-light leading-relaxed">
+                        From elegant office displays to festive residential décor, we design, install, maintain, and remove holiday arrangements that make the season memorable.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-terracotta hover:text-white font-medium transition-colors pt-2">
+                        Discover Holiday Design <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="lg:col-span-6 bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-xs uppercase tracking-widest text-sage-light mb-6 font-semibold">Holiday Offerings</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-holly-berry text-terracotta"></i> Live poinsettias</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-holly-berry text-terracotta"></i> Christmas trees</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-holly-berry text-terracotta"></i> Wreaths & garlands</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-holly-berry text-terracotta"></i> Table & mantle arrangements</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-holly-berry text-terracotta"></i> Exterior holiday displays</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-holly-berry text-terracotta"></i> Installation & take-down</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-t border-b border-white/10 items-center">
+                <div class="lg:col-span-2">
+                    <span class="font-serif text-6xl lg:text-8xl text-terracotta/40 font-light">04</span>
+                </div>
+                <div class="lg:col-span-4 space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-sage-light font-semibold">Events & Floral</span>
+                    <h3 class="font-serif text-3xl md:text-4xl">Special Events</h3>
+                    <p class="text-lg italic text-sage-light font-serif">Set the scene beautifully.</p>
+                    <p class="text-ivory/80 font-light leading-relaxed">
+                        Weddings, celebrations, corporate gatherings, meetings, and special occasions deserve details that bring everything together.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-terracotta hover:text-white font-medium transition-colors pt-2">
+                        Plan Your Event <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="lg:col-span-6 bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-xs uppercase tracking-widest text-sage-light mb-6 font-semibold">Event Elements</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-champagne-glasses text-terracotta"></i> Floral arrangements</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-champagne-glasses text-terracotta"></i> Live & silk flowers</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-champagne-glasses text-terracotta"></i> Foliage plants & rentals</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-champagne-glasses text-terracotta"></i> Vases & containers</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-champagne-glasses text-terracotta"></i> Event installation</div>
+                        <div class="flex items-center gap-3"><i class="fa-solid fa-champagne-glasses text-terracotta"></i> Lighting accents</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="transformation" class="py-24 bg-ivory">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Transformation</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-forest font-normal">From ordinary to alive.</h2>
+                <p class="text-lg text-sage-dark font-serif italic">A few well-placed plants can transform an entire environment.</p>
+            </div>
+
+            <div class="bg-forest-dark rounded-3xl overflow-hidden shadow-2xl relative border border-sage/20">
+                <div class="slider-container">
+                    <!-- Before Image (Right side underneath) -->
+                    <div class="slider-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpZ4Hzb9xw_5gizPQs_5JtcdWnKgDzbkuIDAT0XmWntwt-EwN8071JHc0B&s=10');">
+                        <span class="absolute bottom-6 left-6 bg-black/70 text-white px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase">Before Installation</span>
+                    </div>
+                    <!-- After Image (Left side on top) -->
+                    <div id="slider-after-pane" class="slider-image slider-after" style="background-image: url('https://blog.bridals.pk/wp-content/uploads/2018/11/potted-plants-for-wedding-1.jpeg'); width: 50%;">
+                        <span class="absolute bottom-6 left-6 bg-terracotta text-white px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase">After NatureScapes</span>
+                    </div>
+                    <!-- Handle -->
+                    <div id="slider-handle" class="slider-handle" style="left: 50%;">
+                        <div class="slider-button">
+                            <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8 text-center bg-forest-dark text-ivory flex flex-col md:flex-row items-center justify-between gap-6">
+                    <p class="text-sm text-sage-light font-light max-w-2xl text-left">
+                        We don’t simply fill a room with plants. We consider scale, light, architecture, color, traffic, and the feeling you want the space to create.
+                    </p>
+                    <a href="#contact" class="bg-terracotta hover:bg-terracotta-hover text-white px-6 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap">
+                        See Our Transformations →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-24 bg-sage-light/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Why NatureScapes</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-forest font-normal">Beauty is only the beginning.</h2>
+                <p class="text-sage-dark">When you work with NatureScapes, you're investing in more than beautiful foliage.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-ivory p-8 rounded-3xl border border-sage/20 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-forest text-ivory flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-building-user"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-forest mb-3">Create a Better First Impression</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        Well-designed plantscapes make businesses feel welcoming, established, and professional.
+                    </p>
+                </div>
+
+                <div class="bg-ivory p-8 rounded-3xl border border-sage/20 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-forest text-ivory flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-forest mb-3">Make People Feel at Home</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        Natural elements bring warmth and character to homes, offices, healthcare environments, and hospitality spaces.
+                    </p>
+                </div>
+
+                <div class="bg-ivory p-8 rounded-3xl border border-sage/20 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-forest text-ivory flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-forest mb-3">Keep Your Investment Looking Its Best</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        Our knowledgeable technicians provide ongoing care so your plants remain healthy and beautiful.
+                    </p>
+                </div>
+
+                <div class="bg-ivory p-8 rounded-3xl border border-sage/20 shadow-sm hover:shadow-md transition-all">
+                    <div class="w-12 h-12 rounded-2xl bg-forest text-ivory flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-forest mb-3">Design with Purpose</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        Every plant, container, and arrangement is selected to complement the environment where it lives.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-ivory">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Simple Steps</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-forest font-normal">From idea to installation.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <div class="space-y-4">
+                    <span class="font-serif text-5xl text-terracotta font-light">01</span>
+                    <h3 class="font-serif text-xl font-bold text-forest">Tell us about your space</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        We'll learn about your environment, style, needs, and vision during an initial consultation.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <span class="font-serif text-5xl text-terracotta font-light">02</span>
+                    <h3 class="font-serif text-xl font-bold text-forest">We create the plan</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        Our designers develop a thoughtful plant and décor concept specifically for your lighting and architecture.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <span class="font-serif text-5xl text-terracotta font-light">03</span>
+                    <h3 class="font-serif text-xl font-bold text-forest">We bring it to life</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        Our professional team handles delivery and installation with meticulous attention to every detail.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <span class="font-serif text-5xl text-terracotta font-light">04</span>
+                    <h3 class="font-serif text-xl font-bold text-forest">We keep it beautiful</h3>
+                    <p class="text-sm text-forest/70 font-light leading-relaxed">
+                        With professional maintenance and ongoing care plans, your plants continue to thrive effortlessly.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="#contact" class="inline-block bg-forest hover:bg-forest-light text-ivory px-8 py-4 rounded-full font-medium transition-all shadow-md">
+                    Start Your Project →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-forest text-ivory">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Kendra + Tricia</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-normal">The people behind <br>the plants.</h2>
+                <p class="text-lg italic text-sage-light font-serif">Two designers. One passion for bringing spaces to life.</p>
+                <p class="text-ivory/80 font-light leading-relaxed">
+                    Founded in 2004, NatureScapes grew from a shared love of plants, floral design, creativity, and exceptional client service. Kendra and Tricia bring years of experience in horticulture, floral design, landscaping, and business to every project. Their approach is personal: understand the client, understand the space, and create something that feels right.
+                </p>
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/10 font-serif italic text-sage-light">
+                    "We believe the best spaces don't just look beautiful. They feel alive."
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                    <div class="aspect-[4/5] rounded-3xl overflow-hidden bg-forest-dark border border-white/10 shadow-xl">
+                        <img src="http://naturescapesfoliage.com/images/kendra.jpg" alt="Kendra - Co-Owner" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-xl font-bold">Kendra</h3>
+                    <p class="text-xs uppercase tracking-widest text-sage-light">Co-Founder & Plant Designer</p>
+                </div>
+                <div class="space-y-3 sm:mt-12">
+                    <div class="aspect-[4/5] rounded-3xl overflow-hidden bg-forest-dark border border-white/10 shadow-xl">
+                        <img src="http://naturescapesfoliage.com/images/tricia.jpg" alt="Tricia - Co-Owner" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-xl font-bold">Tricia</h3>
+                    <p class="text-xs uppercase tracking-widest text-sage-light">Co-Founder & Horticultural Expert</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 bg-ivory">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Our Work</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-forest font-normal mt-2">See what we've grown.</h2>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wider">
+                    <button class="px-4 py-2 rounded-full bg-forest text-ivory transition-all">All</button>
+                    <button class="px-4 py-2 rounded-full bg-sage-light/50 text-forest hover:bg-sage hover:text-white transition-all">Interior Plantscapes</button>
+                    <button class="px-4 py-2 rounded-full bg-sage-light/50 text-forest hover:bg-sage hover:text-white transition-all">Exterior Design</button>
+                    <button class="px-4 py-2 rounded-full bg-sage-light/50 text-forest hover:bg-sage hover:text-white transition-all">Holiday Décor</button>
+                    <button class="px-4 py-2 rounded-full bg-sage-light/50 text-forest hover:bg-sage hover:text-white transition-all">Special Events</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light">
+                    <img src="https://blog.bridals.pk/wp-content/uploads/2018/11/potted-plants-for-wedding-1.jpeg" alt="Corporate Atrium Planter" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white font-serif text-lg">Corporate Atrium Plantscape</span>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgf4yQ0pam1z7wP0c23gm5FhusUz7iXDnm66Ckb75LcLgnhdtNqMqoMBsi&s=10" alt="Healthcare Environment Greenery" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white font-serif text-lg">Healthcare Environment Greenery</span>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuUlmBzPXHH9F7SWBv4LO-pbJPJepO4uArP54sT7Obu6-FPw6Oo0IMeyg&s=10" alt="Festive Holiday Decorating" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white font-serif text-lg">Festive Holiday Decorating</span>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpZ4Hzb9xw_5gizPQs_5JtcdWnKgDzbkuIDAT0XmWntwt-EwN8071JHc0B&s=10" alt="Exterior Container Gardens" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white font-serif text-lg">Exterior Container Gardens</span>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light">
+                    <img src="https://blog.bridals.pk/wp-content/uploads/2018/11/potted-plants-for-wedding-1.jpeg" alt="Wedding & Event Floral Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white font-serif text-lg">Wedding & Event Floral Setup</span>
+                    </div>
+                </div>
+
+                <div class="group relative aspect-[4/3] rounded-3xl overflow-hidden bg-sage-light">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKCj8qL2B9o1Jc82cL22adheoaWsO7uufz4O0fEVsdToZL_w9HWFKd08gC&s=10" alt="Residential Statement Greenery" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                        <span class="text-white font-serif text-lg">Residential Statement Greenery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-sage-light/20 border-y border-sage/20">
+        <div class="max-w-5xl mx-auto px-6 text-center space-y-6">
+            <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Shenandoah Valley Roots</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-forest font-normal leading-tight">
+                Proudly serving Virginia's Shenandoah Valley since 2004.
+            </h2>
+            <p class="text-forest/80 max-w-2xl mx-auto font-light leading-relaxed">
+                From Winchester and surrounding communities to businesses and residences throughout the Shenandoah Valley, NatureScapes brings professional plant design and personal service to every project.
+            </p>
+            <div class="pt-4 flex flex-wrap justify-center items-center gap-6 text-xs text-forest/70 uppercase tracking-widest font-semibold">
+                <span>Woman-Owned</span>
+                <span>•</span>
+                <span>Experienced</span>
+                <span>•</span>
+                <span>Personal</span>
+                <span>•</span>
+                <span>Local</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-forest-dark text-ivory relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs uppercase tracking-[0.3em] font-semibold text-terracotta">Get in Touch</span>
+                <h2 class="font-serif text-4xl md:text-6xl font-normal leading-tight">
+                    Ready to bring your space to life?
+                </h2>
+                <p class="text-ivory/80 font-light leading-relaxed">
+                    Whether you need a complete plantscape, seasonal exterior design, holiday decorating, or beautiful details for your next event, let's create something together.
+                </p>
+
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-forest-light flex items-center justify-center text-terracotta">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-sage-light">Call Us Today</p>
+                            <a href="tel:5405350731" class="font-serif text-lg font-semibold hover:text-terracotta transition-colors">540-535-0731</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-forest-light flex items-center justify-center text-terracotta">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-sage-light">Our Location</p>
+                            <p class="font-serif text-lg font-semibold">172-3 Imboden Drive, Winchester, VA 22603</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-forest-light flex items-center justify-center text-terracotta">
+                            <i class="fa-solid fa-map"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-sage-light">Service Area</p>
+                            <p class="font-serif text-lg font-semibold">Virginia's Shenandoah Valley</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consultation Form -->
+            <div class="lg:col-span-6 bg-white/5 p-8 md:p-10 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl">
+                <h3 class="font-serif text-2xl font-normal mb-6">Let's talk about your space.</h3>
+                
+                <form id="consultation-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-sage-light mb-2 font-semibold">Your Name</label>
+                        <input type="text" required placeholder="Jane Doe" class="w-full bg-forest-dark border border-white/20 rounded-xl px-4 py-3 text-ivory placeholder-ivory/40 focus:outline-none focus:border-terracotta transition-colors">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-sage-light mb-2 font-semibold">Phone Number</label>
+                            <input type="tel" required placeholder="540-000-0000" class="w-full bg-forest-dark border border-white/20 rounded-xl px-4 py-3 text-ivory placeholder-ivory/40 focus:outline-none focus:border-terracotta transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-sage-light mb-2 font-semibold">Email Address</label>
+                            <input type="email" required placeholder="jane@example.com" class="w-full bg-forest-dark border border-white/20 rounded-xl px-4 py-3 text-ivory placeholder-ivory/40 focus:outline-none focus:border-terracotta transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-sage-light mb-2 font-semibold">Service Needed</label>
+                        <select class="w-full bg-forest-dark border border-white/20 rounded-xl px-4 py-3 text-ivory focus:outline-none focus:border-terracotta transition-colors">
+                            <option class="bg-forest-dark">Interior Plantscapes</option>
+                            <option class="bg-forest-dark">Exterior Plantscapes</option>
+                            <option class="bg-forest-dark">Holiday Decorating</option>
+                            <option class="bg-forest-dark">Special Event Design</option>
+                            <option class="bg-forest-dark">Other Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-sage-light mb-2 font-semibold">Tell us about your space</label>
+                        <textarea rows="3" placeholder="Office, home, square footage, lighting conditions..." class="w-full bg-forest-dark border border-white/20 rounded-xl px-4 py-3 text-ivory placeholder-ivory/40 focus:outline-none focus:border-terracotta transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-terracotta hover:bg-terracotta-hover text-white py-4 rounded-xl font-medium transition-all shadow-lg">
+                        Request a Free Consultation
+                    </button>
+                    
+                    <p id="form-success" class="hidden text-center text-sm text-green-400 font-medium pt-2">
+                        Thank you! Kendra and Tricia will be in touch shortly.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-forest-dark text-ivory/60 py-12 border-t border-white/10 text-xs">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <p class="font-serif text-lg text-ivory font-bold mb-1">NatureScapes, Inc.</p>
+                <p>Foliage & Event Designers • Interior Plantscapes • Exterior Plantscapes • Holiday Decorating • Special Events</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <a href="tel:5405350731" class="hover:text-ivory transition-colors">540-535-0731</a>
+                <span>Winchester, VA</span>
+                <a href="https://facebook.com" target="_blank" class="hover:text-ivory transition-colors"><i class="fa-brands fa-facebook-f mr-1"></i> Facebook</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-ivory/40 gap-4">
+            <p>Copyright © 2026 NatureScapes, Inc. All Rights Reserved.</p>
+            <p>Woman-Owned • Serving the Shenandoah Valley Since 2004</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Interactive Before/After Slider
+        const sliderContainer = document.querySelector('.slider-container');
+        const sliderAfterPane = document.getElementById('slider-after-pane');
+        const sliderHandle = document.getElementById('slider-handle');
+
+        let isDragging = false;
+
+        const updateSlider = (clientX) => {
+            const rect = sliderContainer.getBoundingClientRect();
+            let x = clientX - rect.left;
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+            const percentage = (x / rect.width) * 100;
+            sliderAfterPane.style.width = percentage + '%';
+            sliderHandle.style.left = percentage + '%';
+        };
+
+        sliderContainer.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.clientX);
+        });
+
+        // Touch support for slider
+        sliderContainer.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            updateSlider(e.touches[0].clientX);
+        });
+
+        // Form Submission handler (No alert used)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const successMsg = document.getElementById('form-success');
+            successMsg.classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
